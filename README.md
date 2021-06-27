@@ -1,5 +1,4 @@
-# Flask + Vue Template
-This template uses flask **session** for authentication
+# Game Catalog Webapp
 
 ## To run
 ```
@@ -9,5 +8,3 @@ flask run --reload
 
 ## You can check it here
 [http://localhost:5000]()
-
-### To make the first changes you can edit `home.vue.js` file
