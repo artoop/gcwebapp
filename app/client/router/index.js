@@ -16,6 +16,14 @@ const routes = [
             authenticated: false
         }
     },
+    {
+        path: "/register",
+        name: "Register",
+        component: registerPage,
+        meta: {
+            authenticated: false
+        }
+    },
 ];
 
 const router = new VueRouter({
