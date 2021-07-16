@@ -20,9 +20,13 @@
     <body>
         <div id="app" v-cloak>
             <v-app>
-                <v-main>
-                    <navbar></navbar>
-                    <router-view></router-view>
+                <v-main style="background: url('/client/src/images/pattern.png'); background-repeat: no-repeat; background-size: cover;">
+                    <v-row justify="center" no-gutters class="fill-height">
+                        <v-col cols="6" style="background-color: rgba(72, 95, 110, 0.9)">
+                            <navbar></navbar>
+                            <router-view></router-view>
+                        </v-col>
+                    </v-row>
                 </v-main>
             </v-app>
         </div>
@@ -36,9 +40,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw==" crossorigin="anonymous"></script>
 
         <script src="/client/components/navbar.vue.js"></script>
+        <script src="/client/components/gameCard.vue.js"></script>
+
         <script src="/client/views/login.vue.js"></script>
         <script src="/client/views/register.vue.js"></script>
         <script src="/client/views/home.vue.js"></script>
+        <script src="/client/views/addGame.vue.js"></script>
+        <script src="/client/views/game.vue.js"></script>
+        <script src="/client/views/platforms.vue.js"></script>
+        <script src="/client/views/favorites.vue.js"></script>
+        <script src="/client/views/wishlist.vue.js"></script>
 
         <script type="module" src="/client/store/index.js"></script>
         <script type="module" src="/client/router/index.js"></script>

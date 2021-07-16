@@ -58,7 +58,8 @@ def login():
         "message": "Logged in",
         "data": {
             "user": {
-                "username": user["username"]
+                "username": user["username"],
+                "groups": user.get("groups", ["user"])
             }
         }
     }), 200
@@ -119,7 +120,8 @@ def refresh():
         "message": "Refreshed",
         "data": {
             "user": {
-                "username": g.user["username"]
+                "username": g.user["username"],
+                "groups": g.user.get("groups", ["user"])
             }
         }
     })

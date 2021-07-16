@@ -24,6 +24,48 @@ const routes = [
             authenticated: false
         }
     },
+    {
+        path: "/addGame",
+        name: "AddGame",
+        component: addGamePage,
+        meta: {
+            authenticated: true,
+            adminRequired: true
+        }
+    },
+    {
+        path: "/game/:id",
+        name: "Game",
+        component: gamePage,
+        meta: {
+            authenticated: true,
+        }
+    },
+    {
+        path: "/platforms",
+        name: "Platforms",
+        component: platformsPage,
+        meta: {
+            authenticated: true,
+            adminRequired: true
+        }
+    },
+    {
+        path: "/favorites",
+        name: "Favorites",
+        component: favoritesPage,
+        meta: {
+            authenticated: true,
+        }
+    },
+    {
+        path: "/wishlist",
+        name: "Wishlist",
+        component: wishlistPage,
+        meta: {
+            authenticated: true,
+        }
+    }
 ];
 
 const router = new VueRouter({
@@ -35,6 +77,12 @@ router.beforeEach(async (to, from, next) => {
     // seems authenticated but has no user info, so refresh auth
     if (!store.getters.isAuthenticated && store.getters.isLocalAuthenticated) {
         await store.dispatch('refresh');
+    }
+    if (to.matched.some(record => record.meta.adminRequired === true)) {
+        if(!store.getters.isAdmin){
+            return next({ name: "Home"})
+        }
+        return next();
     }
     if (to.matched.some(record => record.meta.authenticated === false)) {
         if(store.getters.isAuthenticated){
