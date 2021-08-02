@@ -81,7 +81,8 @@ def post_games():
 
     if not data.get("title"):
         return jsonify({
-            "success": False
+            "success": False,
+            "message": "No title"
         })
 
     code = "%08d" % (get_game_code(db), )
@@ -94,7 +95,8 @@ def post_games():
             mkdir(p)
     except Exception:
         return jsonify({
-            "success": False
+            "success": False,
+            "message": traceback.format_exc()
         })
 
     try:
