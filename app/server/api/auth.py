@@ -8,6 +8,7 @@ from app.db import get_db
 from app.server import bp
 
 import string
+import app.server.validation.auth as authValidation
 
 
 @bp.route("/auth/login", methods=["POST"])
@@ -129,12 +130,8 @@ def refresh():
 
 @bp.route("/auth/logout", methods=["POST"])
 def logout():
-    session.clear()
-
-    return jsonify({
-        "success": True,
-        "message": "Logged out"
-    })
+    authValidation.authLogout()
+    
 
 
 # load user

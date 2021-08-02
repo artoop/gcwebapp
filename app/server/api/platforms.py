@@ -4,6 +4,7 @@ from flask import request, jsonify, session, g, current_app
 from werkzeug.security import check_password_hash, generate_password_hash
 from bson import ObjectId
 from os import listdir, path
+import app.server.validation.platforms as platformValidation
 
 from app.decorators import json_request, authenticated
 from app.db import get_db
@@ -30,23 +31,8 @@ def get_platforms():
 
 @bp.route("/platforms", methods=["POST"])
 @json_request
-@authenticated
 def post_platforms():
-    db = get_db()
-
-    data = request.json
-
-    db.platforms.insert_one({
-        "name": data["name"],
-        "acronym": data["acronym"],
-        "icon": data["icon"],
-        "active": True,
-        "created_at": datetime.datetime.utcnow()
-    })
-
-    return jsonify({
-        "success": True
-    })
+    return platformValidation.platform()    
 
 
 @bp.route("/platforms/icons", methods=["GET"])

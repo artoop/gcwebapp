@@ -2,6 +2,8 @@ import datetime
 import json
 import traceback
 
+import app.server.validation.wishlist as wishlistValidation
+
 from flask import request, jsonify, session, g, current_app
 from werkzeug.security import check_password_hash, generate_password_hash
 from bson import ObjectId
@@ -43,22 +45,4 @@ def get_wishlist():
 @json_request
 @authenticated
 def post_wishlist():
-    db = get_db()
-
-    data = request.json
-
-    db.wishlist.update_one({
-        "game_id": ObjectId(data["game_id"]),
-        "user_id": g.user["_id"]
-    }, {
-        "$set": {
-            "active": data["active"]
-        },
-        "$setOnInsert": {
-            "created_at": datetime.datetime.utcnow()
-        }
-    }, upsert=True)
-
-    return jsonify({
-        "success": True
-    })
+    return wishlistValidation.wishlist()
