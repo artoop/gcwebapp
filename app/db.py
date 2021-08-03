@@ -23,9 +23,7 @@ def get_db():
     g.db = cn[db_url.rsplit('/', 1)[1]]
     global_db = g.db
 
-    db = g.db
-
-    return db
+    return g.db   
 
 
 def init_db():
